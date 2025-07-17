@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { createToneController } from "./tone";
 import { useState, useEffect } from "react";
+import DarkModeToggle from "./DarkModeToggle";
 
 const tone = createToneController();
 
@@ -11,17 +12,7 @@ export default function Home() {
   const [result, setResult] = useState<string>("");
   const [gameStarted, setGameStarted] = useState(false);
   const [isSelecting, setIsSelecting] = useState(false);
-  const [dark, setDark] = useState(false);
   const [step, setStep] = useState(10);
-
-  // Toggle dark mode class on document root
-  useEffect(() => {
-    if (dark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [dark]);
 
   // Range for random pitch
   const minFreq = 200;
@@ -59,21 +50,18 @@ export default function Home() {
   function submitGuess() {
     if (target == null) return;
     const diff = Math.abs(frequency - target);
-    setResult(`You were off by ${diff} Hz. The correct pitch was ${target} Hz.`);
+    if (diff === 0) {
+      setResult(`🎉 Correct! You matched the pitch exactly at ${target} Hz!`);
+    } else {
+      setResult(`You were off by ${diff} Hz. The correct pitch was ${target} Hz.`);
+    }
     setGameStarted(false);
     tone.stop();
   }
 
   return (
     <div className="relative grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <button
-        className="absolute top-4 right-4 z-10 rounded-full bg-gray-200 dark:bg-gray-800 text-black dark:text-white px-3 py-2 font-semibold shadow hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
-        onClick={() => setDark((d) => !d)}
-        aria-label="Toggle dark mode"
-        type="button"
-      >
-        {dark ? "☀️" : "🌙"}
-      </button>
+      <DarkModeToggle />
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
         <h1 className="font-[family-name:var(--font-geist-mono)] text-4xl font-bold text-center">
           Welcome to the Pitch Tester
