@@ -63,10 +63,13 @@ export default function NoteGame({ registerCancel }: { registerCancel?: (fn: () 
 
     function submitGuess() {
         if (!target) return;
+        const selectedIdx = NOTES.findIndex(n => n.name === selected.name);
+        const targetIdx = NOTES.findIndex(n => n.name === target.name);
+        const semitoneDiff = Math.abs(selectedIdx - targetIdx);
         if (selected.name === target.name) {
             setResult(`🎉 Correct! You matched the note exactly: ${target.name} (${target.freq} Hz)`);
         } else {
-            setResult(`You chose ${selected.name} (${selected.freq} Hz). The correct note was ${target.name} (${target.freq} Hz).`);
+            setResult(`You chose ${selected.name} (${selected.freq} Hz). The correct note was ${target.name} (${target.freq} Hz). You were off by ${semitoneDiff} semitone${semitoneDiff === 1 ? "" : "s"}.`);
         }
         setGameStarted(false);
         tone.stop();

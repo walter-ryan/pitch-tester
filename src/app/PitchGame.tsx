@@ -50,10 +50,11 @@ export default function PitchGame({ registerCancel }: { registerCancel?: (fn: ()
     function submitGuess() {
         if (target == null) return;
         const diff = Math.abs(frequency - target);
+        const percentOff = target !== 0 ? ((diff / target) * 100).toFixed(2) : "0";
         if (diff === 0) {
             setResult(`🎉 Correct! You matched the pitch exactly at ${target} Hz! (Your guess: ${frequency} Hz)`);
         } else {
-            setResult(`You were off by ${diff} Hz. The correct pitch was ${target} Hz. Your guess: ${frequency} Hz.`);
+            setResult(`You were off by ${diff} Hz (${percentOff}%). The correct pitch was ${target} Hz. Your guess: ${frequency} Hz.`);
         }
         setGameStarted(false);
         tone.stop();
