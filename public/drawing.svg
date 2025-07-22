@@ -1,0 +1,18 @@
+<svg
+   width="256"
+   height="256"
+   xmlns="http://www.w3.org/2000/svg">
+   <ellipse
+      style="fill:#000000;fill-opacity:1;stroke-width:3.77953"
+      id="path870"
+      cx="128"
+      cy="128"
+      rx="128"
+      ry="128" />
+   <path
+      style="fill:none;stroke:#800080;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+      d="m 126.52837,65.08474 c 50.10566,-0.717859 3.5035,141.74664 49.15492,142.91334 24.77037,0.63305 43.14708,-83.92745 51.88574,-111.053677" />
+   <path
+      style="fill:none;stroke:#800080;stroke-width:20;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+      d="m 50.065178,65.995016 c 50.105662,-0.717859 3.5035,141.746644 49.15492,142.913344 24.770372,0.63305 43.147082,-83.92745 51.885742,-111.053681" />
+</svg>
